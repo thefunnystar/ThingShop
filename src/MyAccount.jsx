@@ -6,6 +6,10 @@ const MyAccount = () => {
     <div className={styles.myaccount}>
       <div className={styles.edit}>
         <h1 className={styles.myaccount__title}>Edit Store</h1>
+        <div className={styles['user-info']}>
+          <p className={styles['user-info__username']}>Username: user</p>
+          <p>Email: email</p>
+        </div>
         <p className={styles['big-p']}>Change Store Name</p>
         <input type="text" placeholder='Store Name' />
         <div className={styles.edit__content}>

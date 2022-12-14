@@ -29,6 +29,17 @@
     }
 }
 
+.user-info {
+    justify-content: center;
+    display: flex;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+
+    &__username {
+        margin-right: 1rem;
+    }
+}
+
 .big-p {
     font-size: 1.375rem;
 }

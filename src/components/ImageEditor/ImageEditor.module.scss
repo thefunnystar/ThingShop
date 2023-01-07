@@ -1,0 +1,21 @@
+$recycling-green: #009900;
+
+.image-editor {
+    &__img{
+        margin-bottom: .625rem;
+        height: 6.25rem;
+        width: 9.375rem;
+    }
+  &__label {
+    cursor: pointer;
+    display: inline-block;
+    border-radius: .25rem;
+    padding: .625rem 1.25rem;
+    color: #fff;
+    background-color: $recycling-green;
+    margin-bottom: .625rem;
+  }
+  input {
+    display: none;
+  }
+}

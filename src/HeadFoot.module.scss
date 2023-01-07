@@ -1,0 +1,284 @@
+$broncos-navy: #002244;
+$light-gray: #7187a5;
+$dark-gray: #41546c;
+$electric-indigo: #6f00ff;
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
+
+//prettier-ignore
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.nav {
+  position: fixed;
+  width: 97.5%;
+  height: 5rem;
+  display: flex;
+  border: 1px solid $light-gray;
+  border-radius: .5rem;
+  z-index: 1;
+  background-color: #fff;
+  left: 50%;
+  top: 0.75rem;
+  transform: translate(-50%, 0);
+
+  &__title {
+    margin-right: auto;
+    margin-left: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Dancing Script", cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+  }
+
+  &__content {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--cart {
+      text-decoration: none;
+      color: $dark-gray;
+      position: relative;
+      margin-right: 1rem;
+
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      span {
+        font-size: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+      }
+    }
+
+    &--link {
+      color: $dark-gray;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    &--signup,
+    &--myaccount {
+      color: #fff;
+      background-color: $dark-gray;
+      padding: 1rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 0.25rem;
+    }
+  }
+}
+
+.footer {
+  color: #fff;
+  background-color: $broncos-navy;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: sticky;
+
+  &__heading {
+    margin: 4rem auto 2rem auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+
+    &--header {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &--text {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    &--signup {
+      padding: 1rem 4rem;
+      font-size: 1.1rem;
+      background-color: $electric-indigo;
+      border-radius: 0.75rem;
+      color: #fff;
+      border: none;
+      margin: 0 auto 2.5rem;
+      text-decoration: none;
+    }
+
+    &--line {
+      margin: 2rem auto;
+      width: 90vw;
+      height: 6px;
+    }
+  }
+
+  &__end {
+    margin: 0 auto 4rem;
+    width: 90vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+    &--copyright {
+      color: $light-gray;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    &--logo {
+      font-size: 3rem;
+      margin: 0 auto;
+
+      &-text {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+      }
+    }
+
+    &--icons {
+      display: flex;
+
+      & > * {
+        & > * {
+          height: 2.25rem;
+          width: 2.25rem;
+          background-color: #fff;
+          margin-right: 0.25rem;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .nav {
+
+    &__content {
+      gap: .25rem;
+      margin-right: .5rem;
+    }
+  }
+  .footer {
+
+    &__end {
+      position: static;
+      width:80vw;
+
+      &--logo {
+
+        &-text {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .nav {
+    top: .5rem;
+    height: 3.33rem;
+    border-radius: 6.7px;
+    width: 95%;
+
+    &__title {
+      font-size: 1.33rem;
+      margin-left: .67rem;
+    }
+
+    &__content {
+      margin-right: .25rem;
+      font-size: .67rem;
+
+      &--cart {
+        margin-right: .25rem;
+
+        svg {
+          height: 1.33rem;
+          width: 1.33rem;
+        }
+
+        span {
+          font-size: .67rem;
+          transform: translate(-50%, -38%);
+        }
+      }
+
+      &--link {
+        margin-right: .25rem;
+      }
+
+      &--signup,
+      &--myaccount {
+        padding: .67rem;
+      }
+    }
+  }
+
+  .footer {
+
+    &__heading {
+      margin: 2rem auto 1rem auto;
+
+      &--header {
+        font-size: 1.5rem;
+      }
+
+      &--line {
+        margin: 1rem auto;
+      }
+    }
+
+    &__end {
+      margin: 0 auto 1rem;
+
+      &--icons {
+        display: flex;
+  
+        & > * {
+          & > * {
+            height: 1.75rem;
+            width: 1.75rem;
+            background-color: #fff;
+            margin-right: 0.25rem;
+          }
+        }
+      }
+    }
+  }
+}

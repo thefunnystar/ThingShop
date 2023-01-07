@@ -1,0 +1,125 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    & h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+
+    & p {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        & a {
+            color: blue;
+            text-decoration: none;
+        }
+    }
+
+    & input {
+        padding: .5rem;
+        margin: .25rem;
+        width: 14rem;
+    }
+
+    & button {
+        padding: 1rem 7rem;
+        margin-top: 2rem;
+        background-color: blue;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    & h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+
+    & p {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        & a {
+            color: blue;
+            text-decoration: none;
+        }
+    }
+
+    & input {
+        padding: .5rem;
+        margin: .25rem;
+        width: 14rem;
+    }
+
+    & button {
+        padding: 1rem 7rem;
+        margin-top: 2rem;
+        background-color: blue;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 2rem;
+        margin-bottom: 2rem;
+        cursor: pointer;
+    }
+}
+
+.password {
+    &-wrapper {
+        position: relative;
+    }
+}
+
+.eye {
+    height: 1.75rem;
+    width: 1.75rem;
+    top: 50%;
+    right: .6rem;
+    transform: translateY(-50%);
+    position: absolute;
+    cursor: pointer;
+}
+
+.eyeslash {
+    display: none;
+}

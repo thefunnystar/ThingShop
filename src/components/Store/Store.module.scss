@@ -1,0 +1,75 @@
+$dodgers-blue: #005A9C;
+
+.shop {
+    margin-bottom: 1rem;
+  &__header {
+    display: flex;
+
+    & > p {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    & div {
+      font-size: 1.5rem;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+
+  &-container {
+    display: flex;
+    overflow-x: auto;
+
+    &__product {
+      margin-right: 1rem;
+
+      img {
+        height: 12.5rem;
+        width: 18.75rem;
+        object-fit: cover;
+      }
+
+      &--name {
+        font-size: 1.25rem;
+      }
+
+      &--price {
+        color: #333;
+      }
+
+      button {
+        padding: .5rem;
+        color: #fff;
+        border-radius: .5rem;
+        border: none;
+        background-color: $dodgers-blue;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .shop__header p {
+    font-size: 1.25rem;
+  }
+  .shop-container__product {
+
+    &--img {
+      height: 8.2rem !important;
+      width: 12.5rem !important;
+    }
+    &--name {
+      font-size: 0.8rem;
+    }
+    &--price {
+      font-size: .67rem;
+    }
+    &--btn {
+      padding: .33rem !important;
+      border-radius: .33rem !important;
+    }
+  }
+}

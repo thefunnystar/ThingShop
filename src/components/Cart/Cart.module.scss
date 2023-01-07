@@ -1,0 +1,27 @@
+.cart {
+  width: 60rem;
+  margin: 0 auto;
+  padding-top: 12rem;
+  min-height: 100vh;
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: gray;
+    padding: .25rem .5rem;
+    font-size: 2rem;
+  }
+  .cart_content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+
+    li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+}

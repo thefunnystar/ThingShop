@@ -47,13 +47,13 @@ const Register = () => {
       <p>You may use a YOPmail email address.</p>
       <input
         type="text"
-        placeholder="John Doe"
+        placeholder="Name"
         required
         onChange={(e) => setFullName(e.target.value)}
       />
       <input
         type="email"
-        placeholder="john@gmail.com"
+        placeholder="Email"
         required
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -62,7 +62,7 @@ const Register = () => {
         <input
           className={styles.password}
           type={textType}
-          placeholder="password e.g. 123"
+          placeholder="Password"
           required
           onChange={(e) => setPassword(e.target.value)}
         />

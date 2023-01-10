@@ -19,7 +19,6 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/main" element={<MainPage />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart" element={<Cart />} />

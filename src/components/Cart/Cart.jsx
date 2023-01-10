@@ -1,22 +1,30 @@
 import React, { useEffect } from "react";
 import styles from "./Cart.module.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { update } from "../../store/cartSlice";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
   useEffect(() => {
-    console.log("itemss", cart.items);
+    (async () => {
+      const response = await fetch(`http://localhost:5000/cart/${auth.user._id}`);
+      const json = await response.json();
+      dispatch(update(json.data));
+    })();
   }, []);
+
+console.log(cart)
 
   return (
     <div className={styles.cart}>
       <h2>My Cart</h2>
       <ul className={styles.cart_content}>
-        {cart.items.map((item) => {
+        {cart.products.map((product) => {
           return (
             <li>
-              {item.title} <p> ${item.price}</p>
+              {product.title} <p> ${product.price}</p>
             </li>
           );
         })}

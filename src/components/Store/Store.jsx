@@ -23,7 +23,8 @@ const Store = ({ store }) => {
     });
     const json = await res.json();
     console.log(json);
-    //dispatch(add({ item: p }));
+
+    window.location.reload();
   };
   return (
     <div className={styles["shop"]}>

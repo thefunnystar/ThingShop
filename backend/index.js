@@ -379,6 +379,15 @@ backendApp.post("/cart", async (req, res) => {
   return;
 });
 
+backendApp.get("/cart/:user", async (req, res) => {
+  const found = await Cart.findOne({
+    user: mongoose.Types.ObjectId(req.params.user),
+  }).populate("products");
+  res.json({
+    data: found || { user: req.params.user, products:[] },
+  });
+});
+
 // Handle unhandles promise rejections
 process.on("unhandledRejection", (err, promise) => {
   console.log("Error: " + err.message);

@@ -31,7 +31,7 @@ const Login = () => {
     if (json.success === true) {
       console.log(json.data);
       dispatch(login({ user: json.data }));
-      navigate("/main");
+      navigate("/");
     } else {
       alert(json.message);
     }

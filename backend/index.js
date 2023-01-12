@@ -24,13 +24,13 @@ const connectDB = require("./db.js");
 const { url } = require("inspector");
 
 connectDB();
-
-const server = backendApp.listen(5000, function () {
+const port = process.env.PORT || 5000;
+const server = backendApp.listen(port, function () {
   console.log("backend is working");
 });
 
 // for static folder
-backendApp.use(express.static(path.join(__dirname, "public")));
+backendApp.use(express.static(path.join(__dirname, "../build")));
 
 backendApp.get("/users", async (req, res) => {
   const results = await User.find();

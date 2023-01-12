@@ -84,8 +84,10 @@ backendApp.delete("/users/:id", async (req, res) => {
   });
 
   // delte all the re realted products
-  const productsDeleted = await Product.deleteMany({ store: store._id });
-  const storeDeleted = await Store.findByIdAndDelete(store._id);
+  if (store) {
+    const productsDeleted = await Product.deleteMany({ store: store._id });
+    const storeDeleted = await Store.findByIdAndDelete(store._id);
+  }
 
   const result = await User.findByIdAndDelete(req.params.id);
   if (result) {
@@ -356,6 +358,10 @@ backendApp.post("/cart", async (req, res) => {
     console.log("yes");
     found.products.push(req.body.product._id);
     await found.save();
+    res.json({
+      success: true,
+      data: found,
+    });
   } else {
     console.log("no");
     const products = [];
@@ -384,7 +390,7 @@ backendApp.get("/cart/:user", async (req, res) => {
     user: mongoose.Types.ObjectId(req.params.user),
   }).populate("products");
   res.json({
-    data: found || { user: req.params.user, products:[] },
+    data: found || { user: req.params.user, products: [] },
   });
 });
 

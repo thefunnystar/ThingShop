@@ -3,7 +3,7 @@ import styles from "./Cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Cart = () => {
+function Cart() {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 

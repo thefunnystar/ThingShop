@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Store = ({ store }) => {
+function Store({ store }) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
   const products = useSelector((state) => state.products);
-  const addToCart = async (product) => {
+  async function addToCart(product) {
     console.log(product);
 
     if (cart.products.includes(product._id)) {
       alert("No more than one of each item allowed per cart.");
     } else {
-      const res = await fetch("http://localhost:5000/cart", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/cart`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -29,8 +29,6 @@ const Store = ({ store }) => {
       });
       const json = await res.json();
       console.log(json);
-      // console.log(product._id);
-      // console.log(cart.products);
       dispatch(update(json.data));
     }
   };

@@ -25,7 +25,7 @@ const { url } = require("inspector");
 
 connectDB();
 const port = process.env.PORT || 5000;
-const server = backendApp.listen(port, function () {
+const server = backendApp.listen(port, () => {
   console.log("backend is working");
 });
 
@@ -113,9 +113,6 @@ backendApp.get("/products", async (req, res) => {
 
   const stores = await Store.find();
 
-  // composing results
-
-  //
   const productsClone = [...products];
   const copy = [];
   productsClone.forEach((p) => {

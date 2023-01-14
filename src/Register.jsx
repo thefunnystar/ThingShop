@@ -4,15 +4,15 @@ import styles from "./LogReg.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { text } from "@fortawesome/fontawesome-svg-core";
 
-const Register = () => {
+function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [textType, setTextType] = useState("password");
 
-  const submitHandler = async () => {
-    const response = await fetch("http://localhost:5000/register", {
+  async function submitHandler() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -31,15 +31,15 @@ const Register = () => {
     } else {
       alert(json.message);
     }
-  };
+  }
 
-  const eyeHandler = () => {
+  function eyeHandler() {
     if (textType === "password") {
       setTextType("text");
     } else {
       setTextType("password");
     }
-  };
+  }
 
   return (
     <div className={styles.register}>
@@ -101,6 +101,6 @@ const Register = () => {
       </p>
     </div>
   );
-};
+}
 
 export default Register;

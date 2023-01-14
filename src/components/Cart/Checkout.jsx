@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const Checkout = () => {
+function Checkout() {
   return (
     <div className='checkout'>
       <h1>Thanks for shopping!</h1>

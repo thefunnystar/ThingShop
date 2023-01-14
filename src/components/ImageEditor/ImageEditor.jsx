@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import styles from "./ImageEditor.module.scss";
 
-const ImageEditor = ({ setImage, img, setImg }) => {
+function ImageEditor({ setImage, img, setImg }) {
   //const [img, setImg] = useState("");
-  const imageHandler = (e) => {
+  function imageHandler(e) {
     if (e.target.files && e.target.files[0]) {
       setImg(URL.createObjectURL(e.target.files[0]));
       setImage(e.target.files[0]);

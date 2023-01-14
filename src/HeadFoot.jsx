@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./store/authSlice";
 
-const Head = () => {
+function Head() {
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const logoutHandler = (e) => {
+  function logoutHandler(e) {
     e.preventDefault();
     dispatch(logout());
   };
@@ -73,7 +73,7 @@ const Head = () => {
   );
 };
 
-const Foot = () => {
+function Foot() {
   const auth = useSelector((state) => state.auth);
   return (
     <div className={styles.footer}>

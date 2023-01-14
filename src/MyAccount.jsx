@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import ImageEditor from "./components/ImageEditor/ImageEditor";
 
-const MyAccount = () => {
+function MyAccount() {
   const spaceRef = useRef(null);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -24,8 +24,8 @@ const MyAccount = () => {
   const [modal, setModal] = useState(false);
   const [newStoreName, setNewStoreName] = useState("");
 
-  const newStoreHandler = async () => {
-    const response = await fetch("http://localhost:5000/stores", {
+  async function newStoreHandler() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/stores`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,8 +45,8 @@ const MyAccount = () => {
     window.location.reload(false);
   };
 
-  const fetchProducts = async () => {
-    const response = await fetch(`http://localhost:5000/products/${store.id}`);
+  async function fetchProducts() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${store.id}`);
     const json = await response.json();
 
     if (json.success === true) {
@@ -58,9 +58,9 @@ const MyAccount = () => {
   };
 
   //
-  const changStoreName = async () => {
+  async function changeStoreName() {
     setLoading(true);
-    const response = await fetch("http://localhost:5000/stores/" + store.id, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/stores/` + store.id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const MyAccount = () => {
     setStoreName(json.data.name);
   };
 
-  const addNewProd = async () => {
+  async function addNewProd() {
     if (prodName === "") {
       alert("add product name");
       return;
@@ -99,7 +99,7 @@ const MyAccount = () => {
     formData.append("price", Number(price));
     formData.append("store", store._id);
 
-    const response = await fetch("http://localhost:5000/products", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: "POST",
 
       body: formData,
@@ -115,8 +115,8 @@ const MyAccount = () => {
     }
   };
 
-  const deleteHandler = async (id) => {
-    const response = await fetch("http://localhost:5000/products/" + id, {
+  async function deleteHandler(id) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/` + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -130,15 +130,15 @@ const MyAccount = () => {
   };
 
   // Account Managment
-  const logoutHandler = () => {
+  async function logoutHandler() {
     dispatch(logout());
     window.location.href = "/";
   };
 
   // delete
-  const accountDeleteHandler = async () => {
+  async function accountDeleteHandler() {
     // delete and logout
-    const res = await fetch("http://localhost:5000/users/" + auth.user._id, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/users/` + auth.user._id, {
       method: "DELETE",
     });
 
@@ -158,7 +158,7 @@ const MyAccount = () => {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "http://localhost:5000/stores/" + auth.user._id
+        `${process.env.REACT_APP_API_URL}/stores/` + auth.user._id
       );
       const json = await response.json();
       if (json.success === true) {
@@ -231,7 +231,7 @@ const MyAccount = () => {
                       ? styles.loading
                       : styles["input__product--submit-1"]
                   }
-                  onClick={changStoreName}
+                  onClick={changeStoreName}
                 >
                   Submit
                 </button>

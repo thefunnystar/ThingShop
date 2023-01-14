@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Cart.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Cart = () => {
+function Cart() {
   return (
     <div className={styles.cart}>
         <h1 className={styles.cart__title}>Your Cart</h1>

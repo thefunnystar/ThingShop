@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './CheckSuccess.module.scss'
 
-const CheckSuccess = () => {
+function CheckSuccess() {
   return (
     <div>
         {/* Clear all cart items once this page is reached. */}

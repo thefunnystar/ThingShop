@@ -1,3 +1,4 @@
+const fs = require("fs").promises;
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -89,6 +90,20 @@ backendApp.delete("/users/:id", async (req, res) => {
 
   // delte all the re realted products
   if (store) {
+    const products = await Product.find({
+      store: store._id,
+      img: { $ne: null },
+    });
+    products.forEach(async (product) => {
+      const fileToDelete = product.img;
+      if (fileToDelete) {
+        try {
+          await fs.unlink(path.join(__dirname, "public", fileToDelete));
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    });
     const productsDeleted = await Product.deleteMany({ store: store._id });
     const storeDeleted = await Store.findByIdAndDelete(store._id);
   }
@@ -212,7 +227,14 @@ backendApp.post("/products", async (req, res) => {
 backendApp.delete("/products/:id", async (req, res) => {
   console.log(req.params.id);
   const result = await Product.findByIdAndDelete(req.params.id);
-
+  const fileToDelete = result.img;
+  if (fileToDelete) {
+    try {
+      await fs.unlink(path.join(__dirname, "public", fileToDelete));
+    } catch (e) {
+      console.log(e);
+    }
+  }
   res.status(200).json({
     success: true,
     message: "done",

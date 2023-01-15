@@ -31,6 +31,10 @@ const server = backendApp.listen(port, () => {
 
 // for static folder
 backendApp.use(express.static(path.join(__dirname, "../build")));
+backendApp.use(
+  "/uploads",
+  express.static(path.join(__dirname, "public", "uploads"))
+);
 
 backendApp.get("/users", async (req, res) => {
   const results = await User.find();
@@ -122,7 +126,7 @@ backendApp.get("/products", async (req, res) => {
       id: p.id,
       title: p.title,
       price: p.price,
-      img: process.env.SERVER + "/uploads/prod_" + p.id + p.ext,
+      img: "/uploads/prod_" + p.id + p.ext,
       store: p.store,
     };
 
@@ -148,7 +152,7 @@ backendApp.get("/products/:storeid", async (req, res) => {
       id: p.id,
       title: p.title,
       price: p.price,
-      img: process.env.SERVER + "/uploads/prod_" + p.id + p.ext,
+      img: "/uploads/prod_" + p.id + p.ext,
     };
 
     console.log(newP);
@@ -170,7 +174,7 @@ backendApp.post("/products", async (req, res) => {
   if (products.length === 6) {
     res.status(400).json({
       success: false,
-      message: "6 Products arleady found",
+      message: "6 Products already found",
     });
     return;
   }
@@ -187,7 +191,7 @@ backendApp.post("/products", async (req, res) => {
 
   file.name = `prod_${responseProd._id}${path.parse(file.name).ext}`;
   //update the wth image url
-  let imgUrl = process.env.SERVER + "/uploads/" + file.name;
+  let imgUrl = "/uploads/" + file.name;
   const res1 = await Product.findByIdAndUpdate(responseProd._id, {
     img: imgUrl,
   });
@@ -232,8 +236,7 @@ backendApp.get("/stores", async (req, res) => {
       productsClone.forEach((p) => {
         const pClone = { ...p._doc };
 
-        pClone["img"] =
-          process.env.SERVER + "/uploads/prod_" + pClone._id + pClone.ext;
+        pClone["img"] = "/uploads/prod_" + pClone._id + pClone.ext;
         console.log(pClone);
         if (p.store.id === store.id) {
           sProducts.push(pClone);

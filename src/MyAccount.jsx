@@ -43,10 +43,12 @@ function MyAccount() {
     }
 
     window.location.reload(false);
-  };
+  }
 
   async function fetchProducts() {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${store.id}`);
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/products/${store.id}`
+    );
     const json = await response.json();
 
     if (json.success === true) {
@@ -55,27 +57,30 @@ function MyAccount() {
         return [...json.data];
       });
     }
-  };
+  }
 
   //
   async function changeStoreName() {
     setLoading(true);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/stores/` + store.id, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: storeName,
-      }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/stores/` + store.id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: storeName,
+        }),
+      }
+    );
 
     const json = await response.json();
     setLoading(false);
     setStore({ ...json.data });
     setStoreName(json.data.name);
-  };
+  }
 
   async function addNewProd() {
     if (prodName === "") {
@@ -113,41 +118,47 @@ function MyAccount() {
     } else {
       alert("Error!");
     }
-  };
+  }
 
   async function deleteHandler(id) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/` + id, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/products/` + id,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
     const json = await response.json();
     if (json.success === true) {
       await fetchProducts();
     }
-  };
+  }
 
   // Account Managment
   async function logoutHandler() {
     dispatch(logout());
     window.location.href = "/";
-  };
+  }
 
   // delete
   async function accountDeleteHandler() {
     // delete and logout
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/users/` + auth.user._id, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/users/` + auth.user._id,
+      {
+        method: "DELETE",
+      }
+    );
 
     const json = await res.json();
     if (json.success) {
       dispatch(logout());
       window.location.href = "/";
     }
-  };
+  }
 
   const clearForm = () => {
     setImage(null);
@@ -280,7 +291,7 @@ function MyAccount() {
                     {products.map((p) => {
                       return (
                         <li className={styles.product}>
-                          <img src={p.img} alt="" />
+                          <img src={`${process.env.REACT_APP_API_URL}${p.img}`} alt="" />
                           <div className={styles["product__text-container"]}>
                             <p
                               className={
@@ -332,6 +343,6 @@ function MyAccount() {
       </div>
     </div>
   );
-};
+}
 
 export default MyAccount;

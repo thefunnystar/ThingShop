@@ -43,7 +43,7 @@ function Store({ store }) {
             return (
               <div className={styles["shop-container__product"]}>
                 <img
-                  src={p.img}
+                  src={`${process.env.REACT_APP_API_URL}${p.img}`}
                   alt="Product IMG"
                   className={styles["shop-container__product--img"]}
                 />

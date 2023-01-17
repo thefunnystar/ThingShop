@@ -16,7 +16,7 @@ function MyAccount() {
 
   const [prodName, setProdName] = useState("");
   const [image, setImage] = useState(null);
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState();
   const [price, setPrice] = useState(0);
 
   const [products, setProducts] = useState([]);

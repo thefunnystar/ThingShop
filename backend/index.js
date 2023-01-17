@@ -32,9 +32,7 @@ const server = backendApp.listen(port, () => {
 
 // for static folder
 backendApp.use(express.static(path.join(__dirname, "../build")));
-backendApp.use("*", (req, res) => {
-  res.sendFile("index.html", { root: path.join(__dirname, "../build") });
-});
+
 backendApp.use(
   "/uploads",
   express.static(path.join(__dirname, "public", "uploads"))
@@ -417,6 +415,10 @@ backendApp.get("/cart/:user", async (req, res) => {
   res.json({
     data: found || { user: req.params.user, products: [] },
   });
+});
+
+backendApp.use("*", (req, res) => {
+  res.sendFile("index.html", { root: path.join(__dirname, "../build") });
 });
 
 // Handle unhandles promise rejections

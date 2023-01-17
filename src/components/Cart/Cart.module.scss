@@ -6,22 +6,45 @@
   h2 {
     margin-bottom: 20px;
     text-align: center;
-    background-color: gray;
-    padding: .25rem .5rem;
+    padding: 0.25rem 0.5rem;
     font-size: 2rem;
   }
-  .cart_content {
+  &_content {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
     justify-content: center;
     list-style: none;
-
-    li {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
   }
+}
+.shop-container__product {
+  list-style: none;
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: center;
+
+  &--name {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.product {
+  list-style: none;
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  img {
+    width: 9.375rem;
+    height: 6.25rem;
+    margin-right: 0.5rem;
+  }
+}
+
+button {
+  background-color: red;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
 }

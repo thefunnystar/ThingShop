@@ -1,4 +1,3 @@
-
 import styles from "./Cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,8 +6,7 @@ function Cart() {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
-
-console.log(cart)
+  console.log(cart);
 
   return (
     <div className={styles.cart}>
@@ -16,9 +14,20 @@ console.log(cart)
       <ul className={styles.cart_content}>
         {cart.products.map((product) => {
           return (
-            <li>
-              {product.title} <p> ${product.price}</p>
-            </li>
+            <div className={styles.cart__item}>
+              <div className={styles["shop-container__product"]}>
+                <div className={styles["text-container"]}>
+                <img src={`${process.env.REACT_APP_API_URL}${product.img}`} alt="" />
+                  <p className={styles["shop-container__product--name"]}>
+                    {product.title}
+                  </p>
+                  <p className={styles["shop-container__product--price"]}>
+                    {product.price}
+                  </p>
+                </div>
+              </div>
+              <button>Remove</button>
+            </div>
           );
         })}
       </ul>
@@ -26,6 +35,6 @@ console.log(cart)
       <Link to="/checkout">Go To Checkout</Link>
     </div>
   );
-};
+}
 
 export default Cart;

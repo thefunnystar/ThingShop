@@ -1,10 +1,19 @@
 .checkout {
-    min-height: calc(100vh - 45rem);
+  min-height: calc(100vh - 45rem);
 
+  & h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 27rem;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .checkout {
     & h1 {
-        font-weight: 700;
-        font-size: 2rem;
-        text-align: center;
-        margin-top: 27rem;
+      margin-top: 13.5rem;
+      margin-bottom: 13.5rem;
     }
+  }
 }

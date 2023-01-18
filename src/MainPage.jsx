@@ -7,7 +7,7 @@ import Kimono1 from "././kimono_1.jpg";
 import Kimono2 from "././kimono_2.jpg";
 import Kimono3 from "././kimono_3.jpg";
 
-const MainPage = () => {
+function MainPage() {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {

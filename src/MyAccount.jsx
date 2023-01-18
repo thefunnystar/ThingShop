@@ -160,7 +160,7 @@ function MyAccount() {
     }
   }
 
-  const clearForm = () => {
+  function clearForm() {
     setImage(null);
     setImg("");
     setPrice(0);

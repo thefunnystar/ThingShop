@@ -41,7 +41,7 @@ async function handleRemove(product) {
                     {product.title}
                   </p>
                   <p className={styles["shop-container__product--price"]}>
-                    {product.price}
+                    ${product.price}
                   </p>
                 </div>
               </div>

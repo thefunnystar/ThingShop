@@ -106,6 +106,9 @@ backendApp.delete("/users/:id", async (req, res) => {
       }
     });
     const productsDeleted = await Product.deleteMany({ store: store._id });
+    const cartDeleted = await Cart.deleteMany({
+      user: mongoose.Types.ObjectId.createFromHexString(req.params.id),
+    });
     const storeDeleted = await Store.findByIdAndDelete(store._id);
   }
 
@@ -379,11 +382,16 @@ backendApp.post("/cart", async (req, res) => {
   const found = await Cart.findOne({ user: req.body.user });
   if (found) {
     console.log("yes");
-    found.products.push(req.body.product._id);
-    await found.save();
+    await Cart.updateOne(
+      { user: req.body.user },
+      { $push: { products: req.body.product._id } }
+    );
+    const data = await Cart.findOne({ user: req.body.user }).populate(
+      "products"
+    );
     res.json({
       success: true,
-      data: found,
+      data,
     });
   } else {
     console.log("no");
@@ -408,12 +416,36 @@ backendApp.post("/cart", async (req, res) => {
   return;
 });
 
+backendApp.post("/cart/removeitem", async (req, res) => {
+  await Cart.updateOne(
+    { user: req.body.user },
+    { $pullAll: { products: [req.body.product._id] } }
+  );
+  const data = await Cart.findOne({ user: req.body.user }).populate("products");
+  res.json({
+    success: true,
+    data,
+  });
+});
+
 backendApp.get("/cart/:user", async (req, res) => {
   const found = await Cart.findOne({
     user: mongoose.Types.ObjectId(req.params.user),
   }).populate("products");
   res.json({
     data: found || { user: req.params.user, products: [] },
+  });
+});
+
+backendApp.delete("/cart/:user", async (req, res) => {
+  await Cart.updateOne(
+    {
+      user: mongoose.Types.ObjectId(req.params.user),
+    },
+    { products: [] }
+  );
+  res.json({
+    data: { user: req.params.user, products: [] },
   });
 });
 

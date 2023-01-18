@@ -1,12 +1,31 @@
 import styles from "./Cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { update } from "../../store/cartSlice";
 
 function Cart() {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
   console.log(cart);
+
+async function handleRemove(product) {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/cart/removeitem`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user: auth.user._id,
+      product: product,
+    }),
+  });
+  const json = await res.json();
+  console.log(json);
+  dispatch(update(json.data));
+}
 
   return (
     <div className={styles.cart}>
@@ -26,13 +45,14 @@ function Cart() {
                   </p>
                 </div>
               </div>
-              <button>Remove</button>
+              <button onClick={() => {handleRemove(product)}}>Remove</button>
             </div>
           );
         })}
+        <Link to="/checkout" className={styles.link}>Go To Checkout</Link>
       </ul>
 
-      <Link to="/checkout">Go To Checkout</Link>
+      
     </div>
   );
 }

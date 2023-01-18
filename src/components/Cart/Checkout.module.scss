@@ -1,0 +1,10 @@
+.checkout {
+    min-height: calc(100vh - 45rem);
+
+    & h1 {
+        font-weight: 700;
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 27rem;
+    }
+}

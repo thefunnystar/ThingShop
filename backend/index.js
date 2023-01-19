@@ -48,6 +48,14 @@ backendApp.get("/users", async (req, res) => {
 });
 //******************************************* ACCOUNT MANAGMENT *************************************** */
 backendApp.post("/register", async (req, res) => {
+  const existingUser = await User.findOne({ email: req.body.email });
+  if (existingUser) {
+    res.status(400).json({
+      success: false,
+      message: "Account already registered!",
+    });
+    return;
+  }
   const result = await User.create(req.body);
 
   if (result) {
@@ -194,6 +202,12 @@ backendApp.post("/products", async (req, res) => {
     res.status(400).json({
       success: false,
       message: "6 Products already found",
+    });
+    return;
+  } else if (products.find((item) => item.title === req.body.title)) {
+    res.status(400).json({
+      success: false,
+      message: "Product already exists",
     });
     return;
   }

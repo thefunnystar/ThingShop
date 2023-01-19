@@ -116,7 +116,7 @@ function MyAccount() {
       await fetchProducts(store.id);
       clearForm();
     } else {
-      alert("Error!");
+      alert(json.message);
     }
   }
 

@@ -4,6 +4,7 @@ import { add } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Image, Transformation } from "cloudinary-react";
 
 function Store({ store }) {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function Store({ store }) {
       console.log(json);
       dispatch(update(json.data));
     }
-  };
+  }
   return (
     <div className={styles["shop"]}>
       <div className={styles["shop__header"]}>
@@ -42,11 +43,13 @@ function Store({ store }) {
           store.products.map((p) => {
             return (
               <div className={styles["shop-container__product"]}>
-                <img
-                  src={`${process.env.REACT_APP_API_URL}${p.img}`}
-                  alt="Product IMG"
+                <Image
+                  publicId={p.imagePublicId}
+                  cloudName="dewmswl3s"
                   className={styles["shop-container__product--img"]}
-                />
+                >
+                  {/* <Transformation crop="scale" width="200" /> */}
+                </Image>
                 <p className={styles["shop-container__product--name"]}>
                   {p.title}
                 </p>
@@ -65,6 +68,6 @@ function Store({ store }) {
       </div>
     </div>
   );
-};
+}
 
 export default Store;

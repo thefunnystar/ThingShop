@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MainPage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { Image } from "cloudinary-react";
 import Store from "./components/Store/Store";
-import Kimono1 from "././kimono_1.jpg";
-import Kimono2 from "././kimono_2.jpg";
-import Kimono3 from "././kimono_3.jpg";
 
 function MainPage() {
   const [stores, setStores] = useState([]);
@@ -22,6 +19,7 @@ function MainPage() {
   return (
     <div>
       <div className={styles["main-container"]}>
+        {/* <Image publicId="sample" /> */}
         {stores.length > 0 && (
           <>
             {stores.map((store) => {
@@ -32,6 +30,6 @@ function MainPage() {
       </div>
     </div>
   );
-};
+}
 
 export default MainPage;

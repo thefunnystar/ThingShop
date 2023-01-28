@@ -5,6 +5,8 @@ import { logout } from "./store/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import ImageEditor from "./components/ImageEditor/ImageEditor";
+import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
+import { Image, Transformation } from "cloudinary-react";
 
 function MyAccount() {
   const spaceRef = useRef(null);
@@ -83,24 +85,24 @@ function MyAccount() {
   }
 
   async function addNewProd() {
-    if (prodName === "") {
+    if (!prodName) {
       alert("add product name");
       return;
     }
 
-    if (image === null) {
+    if (!img) {
       alert("select some image");
       return;
     }
 
-    if (price === 0) {
+    if (!price) {
       alert("add price");
       return;
     }
 
     const formData = new FormData();
     formData.append("title", prodName);
-    formData.append("file", image);
+    formData.append("imagePublicId", img);
     formData.append("price", Number(price));
     formData.append("store", store._id);
 
@@ -165,7 +167,7 @@ function MyAccount() {
     setImg("");
     setPrice(0);
     setProdName("");
-  };
+  }
   useEffect(() => {
     (async () => {
       const response = await fetch(
@@ -267,11 +269,12 @@ function MyAccount() {
                   />
                   <div>
                     <p className={styles["big-p"]}>Upload Image</p>
-                    <ImageEditor
+                    {/* <ImageEditor
                       setImage={setImage}
                       img={img}
                       setImg={setImg}
-                    />
+                    /> */}
+                    <CloudinaryUploadWidget setImagePublicId={setImg} />
                   </div>
                   <button
                     className={styles["input__product--submit"]}
@@ -291,7 +294,13 @@ function MyAccount() {
                     {products.map((p) => {
                       return (
                         <li className={styles.product}>
-                          <img src={`${process.env.REACT_APP_API_URL}${p.img}`} alt="" />
+                          <Image
+                  publicId={p.imagePublicId}
+                  cloudName="dewmswl3s"
+                  className={styles["shop-container__product--img"]}
+                >
+                  {/* <Transformation crop="scale" width="200" /> */}
+                </Image>
                           <div className={styles["product__text-container"]}>
                             <p
                               className={

@@ -2,6 +2,7 @@ import styles from "./Cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { update } from "../../store/cartSlice";
+import { Image, Transformation } from "cloudinary-react";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -36,7 +37,13 @@ async function handleRemove(product) {
             <div className={styles.cart__item}>
               <div className={styles["shop-container__product"]}>
                 <div className={styles["text-container"]}>
-                <img src={`${process.env.REACT_APP_API_URL}${product.img}`} alt="" />
+                <Image
+                  publicId={product.imagePublicId}
+                  cloudName="dewmswl3s"
+                  className={styles["shop-container__product--img"]}
+                >
+                  {/* <Transformation crop="scale" width="200" /> */}
+                </Image>
                   <p className={styles["shop-container__product--name"]}>
                     {product.title}
                   </p>

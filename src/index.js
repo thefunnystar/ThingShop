@@ -3,15 +3,17 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { CloudinaryContext } from "cloudinary-react";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "../src/store/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ReduxProvider store={store}>
-    <App />
-  </ReduxProvider>
+  <CloudinaryContext cloudName="dewmswl3s">
+    <ReduxProvider store={store}>
+      <App />
+    </ReduxProvider>
+  </CloudinaryContext>
 );
 
 // If you want to start measuring performance in your app, pass a function

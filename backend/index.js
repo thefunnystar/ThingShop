@@ -52,7 +52,7 @@ backendApp.post("/register", async (req, res) => {
   if (existingUser) {
     res.status(400).json({
       success: false,
-      message: "Account already registered!",
+      message: "Account already registered!'",
     });
     return;
   }
@@ -216,30 +216,14 @@ backendApp.post("/products", async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     store: req.body.store ? req.body.store : "",
+    imagePublicId: req.body.imagePublicId,
   };
-  const file = req.files.file;
-  product["ext"] = path.parse(file.name).ext;
 
   const responseProd = await Product.create(product);
-
-  file.name = `prod_${responseProd._id}${path.parse(file.name).ext}`;
-  //update the wth image url
-  let imgUrl = "/uploads/" + file.name;
-  const res1 = await Product.findByIdAndUpdate(responseProd._id, {
-    img: imgUrl,
+  res.status(200).json({
+    success: true,
+    data: responseProd,
   });
-
-  file.mv(`./public/uploads/${file.name}`, async (err) => {
-    if (err) {
-      console.log(err);
-    }
-    res.status(200).json({
-      success: true,
-      data: responseProd,
-    });
-  });
-
-  // file saving logic
 });
 // delete product
 backendApp.delete("/products/:id", async (req, res) => {

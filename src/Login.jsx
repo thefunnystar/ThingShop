@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { login } from "./store/authSlice";
 
-function Login() {
+const Login = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import ImageEditor from "./components/ImageEditor/ImageEditor";
 import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
 import { Image, Transformation } from "cloudinary-react";
 
-function MyAccount() {
+const MyAccount = () => {
   const spaceRef = useRef(null);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();

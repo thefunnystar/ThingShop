@@ -4,29 +4,32 @@ import { Link } from "react-router-dom";
 import { update } from "../../store/cartSlice";
 import { Image, Transformation } from "cloudinary-react";
 
-function Cart() {
+const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
   console.log(cart);
 
-async function handleRemove(product) {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/cart/removeitem`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      user: auth.user._id,
-      product: product,
-    }),
-  });
-  const json = await res.json();
-  console.log(json);
-  dispatch(update(json.data));
-}
+  async function handleRemove(product) {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/cart/removeitem`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: auth.user._id,
+          product: product,
+        }),
+      }
+    );
+    const json = await res.json();
+    console.log(json);
+    dispatch(update(json.data));
+  }
 
   return (
     <div className={styles.cart}>
@@ -37,13 +40,13 @@ async function handleRemove(product) {
             <div className={styles.cart__item}>
               <div className={styles["shop-container__product"]}>
                 <div className={styles["text-container"]}>
-                <Image
-                  publicId={product.imagePublicId}
-                  cloudName="dewmswl3s"
-                  className={styles["shop-container__product--img"]}
-                >
-                  {/* <Transformation crop="scale" width="200" /> */}
-                </Image>
+                  <Image
+                    publicId={product.imagePublicId}
+                    cloudName="dewmswl3s"
+                    className={styles["shop-container__product--img"]}
+                  >
+                    {/* <Transformation crop="scale" width="200" /> */}
+                  </Image>
                   <p className={styles["shop-container__product--name"]}>
                     {product.title}
                   </p>
@@ -52,16 +55,22 @@ async function handleRemove(product) {
                   </p>
                 </div>
               </div>
-              <button onClick={() => {handleRemove(product)}}>Remove</button>
+              <button
+                onClick={() => {
+                  handleRemove(product);
+                }}
+              >
+                Remove
+              </button>
             </div>
           );
         })}
-        <Link to="/checkout" className={styles.link}>Go To Checkout</Link>
+        <Link to="/checkout" className={styles.link}>
+          Go To Checkout
+        </Link>
       </ul>
-
-      
     </div>
   );
-}
+};
 
 export default Cart;

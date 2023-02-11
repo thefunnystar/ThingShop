@@ -4,7 +4,7 @@ import styles from "./LogReg.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { text } from "@fortawesome/fontawesome-svg-core";
 
-function Register() {
+const Register = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

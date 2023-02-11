@@ -6,7 +6,7 @@ import { update } from "../../store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image, Transformation } from "cloudinary-react";
 
-function Store({ store }) {
+const Store = ({ store }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
@@ -68,6 +68,6 @@ function Store({ store }) {
       </div>
     </div>
   );
-}
+};
 
 export default Store;

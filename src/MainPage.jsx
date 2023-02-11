@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image } from "cloudinary-react";
 import Store from "./components/Store/Store";
 
-function MainPage() {
+const MainPage = () => {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {

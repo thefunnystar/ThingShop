@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./store/authSlice";
 
-function Head() {
+const Head = () => {
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function Head() {
   );
 };
 
-function Foot() {
+const Foot = () => {
   const auth = useSelector((state) => state.auth);
   return (
     <div className={styles.footer}>

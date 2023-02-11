@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { update } from "../../store/cartSlice";
 import styles from "./Checkout.module.scss"
 
-function Checkout() {
+const Checkout = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   useEffect(() => {

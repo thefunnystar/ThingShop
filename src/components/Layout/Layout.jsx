@@ -5,7 +5,7 @@ import { Head,Foot } from '../../HeadFoot'
 
 import { Outlet } from 'react-router-dom'
 
-function Layout() {
+const Layout = () => {
   return (
     <>
     <Head/>
